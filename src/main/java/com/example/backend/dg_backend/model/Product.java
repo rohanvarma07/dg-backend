@@ -31,9 +31,6 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = true)
     private Category category;
 
-    public Product() {
-    }
-
     public Product(String prodName, BigInteger prodPrice, int prodQuantity, String prodDescription, String imgUrl, Category category) {
         this.prodName = prodName;
         this.prodPrice = prodPrice;
@@ -42,6 +39,10 @@ public class Product {
         this.imgUrl = imgUrl;
         this.category = category;
     }
+
+    public Product() {
+    }
+
 
     // Getters and Setters
     public int getProdId() {
@@ -122,7 +123,7 @@ public class Product {
                 ", prodQuantity=" + prodQuantity +
                 ", prodDescription='" + prodDescription + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
-                ", category=" + (category != null ? category.getCategoryName() : "null") +
+                ", category=" + (category != null ? category.getCategoryId() : null) +
                 '}';
     }
 }
