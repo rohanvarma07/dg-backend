@@ -25,7 +25,7 @@ public class CategoryController {
 
     @GetMapping("/categories/{id}")
     public ResponseEntity<Category> findById(@PathVariable int id) {
-        Optional<Category> categoryOpt = categoryService.getCategoryById((long) id);
+        Optional<Category> categoryOpt = categoryService.getCategoryById(id);
         if (categoryOpt.isPresent()) {
             return ResponseEntity.ok(categoryOpt.get());
         } else {
@@ -41,7 +41,7 @@ public class CategoryController {
 
     @PutMapping("/categories/{id}")
     public ResponseEntity<Category> updateCategory(@PathVariable int id, @RequestBody Category category) {
-        Optional<Category> existingCategoryOpt = categoryService.getCategoryById((long) id);
+        Optional<Category> existingCategoryOpt = categoryService.getCategoryById(id);
         if (existingCategoryOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -53,12 +53,12 @@ public class CategoryController {
 
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable int id) {
-        Optional<Category> existingCategoryOpt = categoryService.getCategoryById((long) id);
+        Optional<Category> existingCategoryOpt = categoryService.getCategoryById(id);
         if (existingCategoryOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        categoryService.deleteCategory((long) id);
+        categoryService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }
 }

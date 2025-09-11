@@ -18,7 +18,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> getCategoryById(Long id) {
+    public Optional<Category> getCategoryById(Integer id) {
         return categoryRepository.findById(id);
     }
 
@@ -26,11 +26,11 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public void deleteCategory(Long id) {
+    public void deleteCategory(Integer id) {
         categoryRepository.deleteById(id);
     }
 
-    public boolean existsById(Long id) {
+    public boolean existsById(Integer id) {
         return categoryRepository.existsById(id);
     }
 }

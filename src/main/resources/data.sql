@@ -49,3 +49,4 @@ INSERT INTO products (prod_name, prod_price, prod_quantity, prod_description, im
 -- Example test accounts can be created with:
 -- Email: admin@example.com, Password: admin123
 -- Email: user@example.com, Password: user123
+

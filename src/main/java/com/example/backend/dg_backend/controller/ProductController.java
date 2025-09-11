@@ -66,7 +66,7 @@ public class ProductController {
         // Find category if provided
         Category category = null;
         if (categoryId != null) {
-            Optional<Category> categoryOpt = categoryService.getCategoryById(categoryId.longValue());
+            Optional<Category> categoryOpt = categoryService.getCategoryById(categoryId);
             if (categoryOpt.isPresent()) {
                 category = categoryOpt.get();
             } else {
@@ -112,7 +112,7 @@ public class ProductController {
         // Find category if provided
         Category category = null;
         if (categoryId != null) {
-            Optional<Category> categoryOpt = categoryService.getCategoryById(categoryId.longValue());
+            Optional<Category> categoryOpt = categoryService.getCategoryById(categoryId);
             if (categoryOpt.isPresent()) {
                 category = categoryOpt.get();
             } else {
