@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable()) // Disable CSRF for REST API
+            .csrf(csrf -> csrf.disable()) // Explicitly disable CSRF for REST API
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/auth/**").permitAll() // Allow auth endpoints
                 .requestMatchers("/api/categories/**").permitAll() // Allow categories
@@ -52,4 +52,6 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.backend.dg_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
@@ -13,22 +14,28 @@ public class Product {
     private int prodId;
 
     @Column(name = "prod_name")
+    @JsonProperty("prod_name")
     private String prodName;
 
     @Column(name = "prod_price")
+    @JsonProperty("prod_price")
     private BigInteger prodPrice;
 
     @Column(name = "prod_quantity")
+    @JsonProperty("prod_quantity")
     private int prodQuantity;
 
     @Column(name = "prod_description", columnDefinition = "TEXT")
+    @JsonProperty("prod_description")
     private String prodDescription;
 
     @Column(name = "img_url")
+    @JsonProperty("img_url")
     private String imgUrl;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = true)
+    @JsonProperty("category_id")
     private Category category;
 
     public Product(String prodName, BigInteger prodPrice, int prodQuantity, String prodDescription, String imgUrl, Category category) {
