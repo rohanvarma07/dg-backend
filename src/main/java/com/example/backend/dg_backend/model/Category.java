@@ -2,6 +2,7 @@ package com.example.backend.dg_backend.model;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,11 @@ public class Category {
     private int categoryId;
 
     @Column(name = "category_name", nullable = false, unique = true)
+    @JsonProperty("category_name")
     private String categoryName;
 
     @Column(name = "category_description")
+    @JsonProperty("category_description")
     private String categoryDescription;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

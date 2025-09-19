@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,15 +28,17 @@ public class SecurityConfig {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable()) // Explicitly disable CSRF for REST API
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/auth/**").permitAll() // Allow auth endpoints
                 .requestMatchers("/api/categories/**").permitAll() // Allow categories
                 .requestMatchers("/api/products/**").permitAll() // Allow products
                 .requestMatchers("/uploads/**").permitAll() // Allow file uploads
-                .anyRequest().authenticated()
+                .anyRequest().permitAll() // Allow all other requests for now
             )
             .formLogin(form -> form.disable()) // Disable default login form
-            .httpBasic(basic -> basic.disable()); // Disable basic auth
+            .httpBasic(basic -> basic.disable()) // Disable basic auth
+            .logout(logout -> logout.disable()); // Disable logout
 
         return http.build();
     }
@@ -52,6 +55,5 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 
 }
