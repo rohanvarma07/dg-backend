@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoryId;
+    private int categoryId ;
 
     @Column(name = "category_name", nullable = false, unique = true)
     @JsonProperty("category_name")
